@@ -2,6 +2,7 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import multer from 'multer';
 import morgan from 'morgan';
+import cors from 'cors';
 
 const prisma = new PrismaClient();
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
+app.use(cors())
 
 app.get('/posts', async (req, res) => {
   try {
