@@ -129,7 +129,7 @@ const storage = multer.diskStorage({
   filename(req, file, cb) {
     // 파일명 설정을 돕기 위해 요청정보(req)와 파일(file)에 대한 정보를 전달함
     console.log('reqq', file);
-    const testSn = file.originalname;
+    const testSn = decodeURI(file.originalname);
 
     const today = new Date();
 
