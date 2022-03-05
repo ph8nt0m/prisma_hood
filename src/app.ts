@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
-app.use(cors())
+app.use(cors());
 
 app.get('/posts', async (req, res) => {
   try {
@@ -128,7 +128,7 @@ const storage = multer.diskStorage({
   // 실제 저장되는 파일명 설정
   filename(req, file, cb) {
     // 파일명 설정을 돕기 위해 요청정보(req)와 파일(file)에 대한 정보를 전달함
-    console.log('req', file);
+    console.log('reqq', file);
     const testSn = file.originalname;
 
     const today = new Date();
@@ -163,6 +163,7 @@ const upload = multer({ storage });
 app.post('/upload', upload.single('img'), (req, res) => {
   const path = { path: req.file?.path };
   res.json(path);
+  console.log(path);
 });
 
 app.listen('8000', () => {
